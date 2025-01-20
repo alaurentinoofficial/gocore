@@ -9,22 +9,22 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-type StructValidator struct {
+type PlagroundValidator struct {
 	validate *validator.Validate
 }
 
-func NewStructValidator() *StructValidator {
-	return &StructValidator{
+func NewStructValidator() *PlagroundValidator {
+	return &PlagroundValidator{
 		validate: validator.New(),
 	}
 }
 
-func (v *StructValidator) Register(name string, errorMessage string, validation validator.Func) {
+func (v *PlagroundValidator) Register(name string, errorMessage string, validation validator.Func) {
 	errorMessages[name] = errorMessage
 	v.validate.RegisterValidation(name, validation)
 }
 
-func (v *StructValidator) Validate(value any) *FormErrors {
+func (v *PlagroundValidator) Validate(value any) *FormErrors {
 	if errs := v.validate.Struct(value); errs != nil {
 		return ConvertToValidationFormErrors(errs.(validator.ValidationErrors))
 	}
